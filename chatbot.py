@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 import streamlit as st
-from langchain_ollama import ChatOllama
-
+from langchain_groq import ChatGroq
 #load the env variables
 load_dotenv()
 
@@ -24,8 +23,8 @@ for message in st.session_state.chat_history:
         st.markdown(message['content'])
 
 #llm intiate
-llm = ChatOllama(
-    model="qwen3.5:9b", 
+llm = ChatGroq(
+    model="llama-3.3-70b-versatile", 
     temperature=0.1
     )
 
