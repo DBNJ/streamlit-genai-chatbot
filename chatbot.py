@@ -1,35 +1,35 @@
 from dotenv import load_dotenv
 import streamlit as st
-from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama
 
-
-# load the env variables
+#load the env variables
 load_dotenv()
 
-# streamlit page setup
+#streamlit page setup
 st.set_page_config(
-    page_title="Chatbot",
-    page_icon="🤖",
-    layout="centered",
-)
-st.title("💬 Generative AI Chatbot")
+    page_title="🤖  Chatbot", 
+    page_icon="🤖", 
+    layout="centered",#wide
+    )
 
-# initiate chat history
-if "chat_history" not in st.session_state:
+st.title("💬  Generative AI Chatbot")
+
+#initiate chat history
+if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
 
-# show chat history
+#show chat history
 for message in st.session_state.chat_history:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+    with st.chat_message(message['role']):
+        st.markdown(message['content'])
 
-# llm initiate
-llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    temperature=0.0,
-)
+#llm intiate
+llm = ChatOllama(
+    model="qwen3.5:9b", 
+    temperature=0.1
+    )
 
-# input box
+#input box
 user_prompt = st.chat_input("Ask Chatbot...")
 
 if user_prompt:
